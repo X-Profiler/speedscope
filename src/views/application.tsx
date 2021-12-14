@@ -419,8 +419,8 @@ export class Application extends StatelessComponent<ApplicationProps> {
         return
       }
       this.loadProfile(async () => {
-        const response: Response = await fetch(this.props.hashParams.profileURL!)
-        let filename = new URL(this.props.hashParams.profileURL!).pathname
+        const response: Response = await fetch(decodeURIComponent(this.props.hashParams.profileURL!))
+        let filename = new URL(this.props.hashParams.profileURL!, "file:").pathname
         if (filename.includes('/')) {
           filename = filename.slice(filename.lastIndexOf('/') + 1)
         }
